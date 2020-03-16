@@ -3,10 +3,17 @@ import Fecha from "./fecha.js"
 import Tiempo from "./tiempo.js"
 import Direccion from "./direccion.js"
 import Cliente from "./cliente.js"
+import ClienteFrecuente from "./clientefrecuente.js"
 import Producto from "./producto.js"
 import ElementoPedido from "./elementopedido.js"
 import Pedido from "./pedido.js"
 import Restaurante from "./restaurante.js"
+
+const cliente1 = new Cliente ({
+    nombre: "Alberto Esparza Gomez Rodriguez",
+    direccion: new Direccion("Laguna del Calabozo","442","", "Villas Bugambilia", "28956", "Villa de Alvarez", "Colima"),
+    telefono: "312224341"
+})
 export default class Main {
 
     constructor(){
@@ -21,7 +28,7 @@ export default class Main {
     }
 
     pruebaFecha(){
-        let fecha = new Fecha(5,4,2017)
+        let fecha = new Fecha(1,2,2000)
         console.log("----------Fecha---------")
         console.log(fecha.getAños())
         console.log(fecha.getMeses())
@@ -52,12 +59,25 @@ export default class Main {
     }
 
     pruebaCliente(){
-        let nombre = "Alberto Esparza Gomez Rodriguez"
-        let direccion = new Direccion("Laguna del Calabozo","442","", "Villas Bugambilia", "28956", "Villa de Alvarez", "Colima")
-        let telefono = "312245567"
-        let cliente = new Cliente(nombre,direccion,telefono)
+        let cliente = new Cliente ({
+            nombre: "Alberto Esparza Gomez Rodriguez",
+            direccion: new Direccion("Laguna del Calabozo","442","", "Villas Bugambilia", "28956", "Villa de Alvarez", "Colima"),
+            telefono: "312224341"
+        })
         console.log("----------Cliente---------")
         console.log(cliente.getPerfil())
+    }
+
+    pruebaClienteFrecuente(){
+        let clienteFrecuente1 = new ClienteFrecuente({
+            numeroCliente: 321,
+            fechaRegistro: new Fecha(2,4,2010),
+            nombre: ("Alfonso Robles Farias"),
+            direccion: new Direccion ("Hacienda el Cortijo", "601", "1","Real Colima","298765","Villa de Alvarez", "Colima"),
+            telefono: "312333141"
+        })
+        console.log('-----Cliente Frecuente-----')
+        console.log(clienteFrecuente1.getPerfil())
     }
 
     pruebaProducto(){
@@ -69,40 +89,62 @@ export default class Main {
     }
 
     pruebaElementoPedido(){
-        let cantidad = 2
-        let producto = new Producto("Pasta con allioli", new Precio(130))
-        let elemento = new ElementoPedido(cantidad,producto)
+        let elementoPedido = new ElementoPedido({
+            cantidad:2,
+            producto: new Producto("Pasta Con Allioli", new Precio(130))
+        })
         console.log("--------Elemento Pedido--------")
-        console.log(elemento.getDescripcionB())
+        console.log(elementoPedido.getDescripcionB())
     }
     
     pruebaPedido(){
-        let cantidad1 = 1
-        let cantidad2 = 3
-        this.elemento1 = new ElementoPedido(cantidad1,new Producto("Hamburguesa Vegetariana", new Precio(110)))
-        this.elemento2 = new ElementoPedido(cantidad2,new Producto("Filete Mignon", new Precio(200)))
-        let pedido = new Pedido(new Fecha(1,5,2020),new Tiempo(1,22,"pm"),new Cliente("Ramon Castro Lopez"),new Direccion ("Miguel Hidalgo","222","","Vista Hermosa","298345","Colima","Colima"), "3124456446")
+        let pedido1 = new Pedido({
+            fecha: new Fecha(1,3,2020),
+            hora: new Tiempo(1,44,"pm"),
+            cliente: cliente1
+        })
+        let elementoPedido1 = new ElementoPedido({
+            cantidad:2,
+            producto: new Producto("Pasta Con Allioli", new Precio(130))
+        })
+        let elementoPedido2 = new ElementoPedido({
+            cantidad:3,
+            producto: new Producto("Filete Mignon", new Precio(200))
+        })
         console.log("-------Pedido-------")
-        pedido.agregarElemento(this.elemento1)
-        pedido.agregarElemento(this.elemento2)
-        console.log("Hay una cantidad de " + pedido.getNumeroElementos() + " productos distintos")
-        console.log("Hay un total de " + pedido.getNumeroProductos()+ " productos") 
-        pedido.listarElementos()
-        console.log(pedido.getResumen())
-        console.log("El costo total es de: " + pedido.getCostoTotal())
+        pedido1.agregarElemento(elementoPedido1)
+        pedido1.agregarElemento(elementoPedido2)
+        console.log("Hay una cantidad de " + pedido1.getNumeroElementos() + " productos distintos")
+        console.log("Hay un total de " + pedido1.getNumeroProductos()+ " productos") 
+        pedido1.listarElementos()
+        console.log(pedido1.getResumen())
+        console.log("El costo total es de: " + pedido1.getCostoTotal())
     }
 
     pruebaRestaurante(){
-        let cantidad1 = 2
-        let cantidad2 = 4
-        this.producto1 = new ElementoPedido(cantidad1,new Producto("Hamburguesa Angus", new Precio(130))) 
-        this.producto2 = new ElementoPedido(cantidad2, new Producto("Pizza Napoletana", new Precio(120)))
-        let pedido1 = new Pedido(new Fecha(1,3,2020),new Tiempo(5,32,"pm"),new Cliente("Alfredo Gomez Tuercas"), new Direccion("Hacienda Venustiano","427","","Calaboide","294578","Guadalajara", "Jalisco"), "312231321")
-        let restaurante = new Restaurante("Ristorante L'eterna cima", "312454467", new Direccion("Lapiz Lazuli","567","","Calabozo","294578","Guadalajara", "Jalisco"))
-        restaurante.registrarProducto(this.producto1)
-        restaurante.registrarProducto(this.producto2)
-        pedido1.agregarElemento(this.producto1)
-        pedido1.agregarElemento(this.producto2)
+        let elementoPedido1 = new ElementoPedido({
+            cantidad:2,
+            producto: new Producto("Pasta Con Allioli", new Precio(130))
+        })
+        let elementoPedido2 = new ElementoPedido({
+            cantidad:3,
+            producto: new Producto("Filete Mignon", new Precio(200))
+        })
+        let pedido1 = new Pedido({
+            fecha: new Fecha(1,3,2020),
+            hora: new Tiempo(1,44,"pm"),
+            cliente: cliente1
+        })
+        let restaurante = new Restaurante ({
+            nombre:"Ristorante L'eterna cima",
+            telefono:"312454467",
+            direccion: new Direccion("Lapiz Lazuli","567","","Calabozo","294578","Guadalajara", "Jalisco")
+        })
+        
+        restaurante.registrarProducto(elementoPedido1)
+        restaurante.registrarProducto(elementoPedido2)
+        pedido1.agregarElemento(elementoPedido1)
+        pedido1.agregarElemento(elementoPedido2)
         restaurante.registrarPedido(pedido1)
         console.log('------Restaurante------')
         restaurante.listarProductos()
@@ -118,6 +160,7 @@ tester.pruebaFecha();
 tester.pruebaPrecio();
 tester.pruebaDireccion();
 tester.pruebaCliente();
+tester.pruebaClienteFrecuente();
 tester.pruebaProducto();
 tester.pruebaElementoPedido();
 tester.pruebaPedido();

@@ -2,7 +2,7 @@ import Direccion from "./direccion.js"
 import Pedido from "./pedido.js"
 export default class Restaurante{
 
-    constructor(nombre,telefono,direccion){
+    constructor({nombre,telefono,direccion}){
         this._nombre = nombre;
         this._telefono = telefono;
         this._direccion = direccion;

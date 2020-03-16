@@ -5,7 +5,7 @@ import ElementoPedido from "./elementopedido.js"
 
 export default class Pedido{
 
-    constructor(fecha,hora,cliente){
+    constructor({fecha,hora,cliente}){
         this._fecha = fecha;
         this._hora = hora;
         this._cliente = cliente;

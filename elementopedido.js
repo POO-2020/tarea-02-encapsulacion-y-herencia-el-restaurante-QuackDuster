@@ -1,6 +1,6 @@
 export default class ElementoPedido{
 
-    constructor(cantidad, producto){
+    constructor({cantidad, producto}){
         this._producto = producto;
         this._cantidad = cantidad;
     }
