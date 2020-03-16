@@ -5,10 +5,11 @@ import ElementoPedido from "./elementopedido.js"
 
 export default class Pedido{
 
-    constructor({fecha,hora,cliente}){
+    constructor({numeroPedido,fecha,hora,cliente}){
         this._fecha = fecha;
         this._hora = hora;
         this._cliente = cliente;
+        this._numeroPedido = numeroPedido;
         this._elementosPedidos = [];
     }
 
@@ -45,7 +46,7 @@ export default class Pedido{
     }
 
     getResumen(){
-        return `${this._fecha.getFecha()} ${this._hora.getFormato12()} \n- ${this.getNumeroElementos()} elementos con ${this.getNumeroProductos()} productos.`
+        return `#${this._numeroPedido} ${this._fecha.getFecha()} ${this._hora.getFormato12()} \n- ${this.getNumeroElementos()} elementos con ${this.getNumeroProductos()} productos.`
     }
 
 }

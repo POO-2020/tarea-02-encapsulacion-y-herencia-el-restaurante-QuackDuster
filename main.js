@@ -99,6 +99,7 @@ export default class Main {
     
     pruebaPedido(){
         let pedido1 = new Pedido({
+            numeroPedido: 1,
             fecha: new Fecha(1,3,2020),
             hora: new Tiempo(1,44,"pm"),
             cliente: cliente1
@@ -131,6 +132,7 @@ export default class Main {
             producto: new Producto("Filete Mignon", new Precio(200))
         })
         let pedido1 = new Pedido({
+            numeroPedido: 1,
             fecha: new Fecha(1,3,2020),
             hora: new Tiempo(1,44,"pm"),
             cliente: cliente1
@@ -140,7 +142,7 @@ export default class Main {
             telefono:"312454467",
             direccion: new Direccion("Lapiz Lazuli","567","","Calabozo","294578","Guadalajara", "Jalisco")
         })
-        
+
         restaurante.registrarProducto(elementoPedido1)
         restaurante.registrarProducto(elementoPedido2)
         pedido1.agregarElemento(elementoPedido1)
