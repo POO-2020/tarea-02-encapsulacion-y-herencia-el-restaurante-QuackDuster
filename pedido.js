@@ -13,6 +13,17 @@ export default class Pedido{
         this._elementosPedidos = [];
     }
 
+    getNumeroPedido(){
+        return this._numeroPedido;
+    }
+
+    esIgualA(pedido){
+        if (pedido.getNumeroPedido() === this._numeroPedido){
+            return true;
+        }
+        return false;
+    }
+
     getNumeroElementos(){
         return `${this._elementosPedidos.length}`
     }

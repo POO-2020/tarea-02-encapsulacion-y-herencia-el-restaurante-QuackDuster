@@ -14,6 +14,12 @@ const cliente1 = new Cliente ({
     direccion: new Direccion("Laguna del Calabozo","442","", "Villas Bugambilia", "28956", "Villa de Alvarez", "Colima"),
     telefono: "312224341"
 })
+
+const cliente2 = new Cliente ({
+    nombre: "Juan Alberto Gomez",
+    direccion: new Direccion("Hacienda el Centenario","122","", "Bugambilias", "204845", "Colima", "Colima"),
+    telefono: "312554623"
+})
 export default class Main {
 
     constructor(){
@@ -123,12 +129,18 @@ export default class Main {
     }
 
     pruebaRestaurante(){
+        console.log('------Restaurante------')
+        let restaurante = new Restaurante ({
+            nombre:"Ristorante L'eterna cima",
+            telefono:"312454467",
+            direccion: new Direccion("Lapiz Lazuli","567","","Calabozo","294578","Guadalajara", "Jalisco")
+        })
         let elementoPedido1 = new ElementoPedido({
             cantidad:2,
             producto: new Producto("Pasta Con Allioli", new Precio(130))
         })
         let elementoPedido2 = new ElementoPedido({
-            cantidad:3,
+            cantidad:4,
             producto: new Producto("Filete Mignon", new Precio(200))
         })
         let pedido1 = new Pedido({
@@ -137,20 +149,51 @@ export default class Main {
             hora: new Tiempo(1,44,"pm"),
             cliente: cliente1
         })
-        let restaurante = new Restaurante ({
-            nombre:"Ristorante L'eterna cima",
-            telefono:"312454467",
-            direccion: new Direccion("Lapiz Lazuli","567","","Calabozo","294578","Guadalajara", "Jalisco")
+
+        let pedido2 = new Pedido({
+            numeroPedido: 2,
+            fecha: new Fecha(1,3,2020),
+            hora: new Tiempo(1,44,"pm"),
+            cliente: cliente2
         })
 
+        
+        //Registrar Pedidos
+        restaurante.registrarPedido(pedido1)
+        restaurante.registrarPedido(pedido2)
+        //Registrar Productos
         restaurante.registrarProducto(elementoPedido1)
         restaurante.registrarProducto(elementoPedido2)
         pedido1.agregarElemento(elementoPedido1)
-        pedido1.agregarElemento(elementoPedido2)
-        restaurante.registrarPedido(pedido1)
-        console.log('------Restaurante------')
-        restaurante.listarProductos()
+        pedido2.agregarElemento(elementoPedido2)
         restaurante.listarPedidos()
+        restaurante.listarProductos()
+        console.log("")
+
+        
+        console.log("----Buscar Pedido----")
+        console.log(restaurante.buscarPedido(pedido1))
+        console.log(restaurante.buscarPedido(pedido2))
+        console.log("")
+
+        console.log("----Buscar Indice Pedidos----")
+        console.log(restaurante._encontrarIndicePedido(pedido1))
+        console.log(restaurante._encontrarIndicePedido(pedido2))
+        console.log("")
+
+        console.log("----Eliminar Pedido----")
+        console.log(restaurante.eliminarPedido(pedido1))
+        restaurante.listarPedidos()
+        restaurante.listarProductos()
+        console.log("")
+
+        console.log("----Modificar Pedido----")
+        console.log(restaurante.modificarPedido(pedido2,pedido1))
+        restaurante.listarPedidos()
+        restaurante.listarProductos()
+        
+        
+        
         
         
     }
