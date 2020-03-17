@@ -190,7 +190,7 @@ export default class Main {
         console.log("----Modificar Pedido----")
         console.log(restaurante.modificarPedido(pedido2,pedido1))
         restaurante.listarPedidos()
-        restaurante.listarProductos()
+        
         
         
         
